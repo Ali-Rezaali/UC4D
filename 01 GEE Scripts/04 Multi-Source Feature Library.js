@@ -68,11 +68,11 @@ var GetSentinel1 = function( Domain , StartDate , EndDate ) {
 
    var VH = ee.Image(10.0).multiply(MeanS1.select('VH_lin').log10()).rename('VH') ;
   
-   // [2.5] Cross-Polarization Ratio (dB) | Calculate Non-Redundant Geometric Features
+   // [2.5] Cross-Polarization Difference (dB)
 
   var Diff = VV.subtract( VH ).rename( 'Diff' );
   
-   // [2.6] Component Assembly into a Raster Stack
+   // [2.6] Component Assembly Into a Raster Stack
 
    return VV.addBands([ VH , Diff ]).toFloat() ;
   
@@ -238,7 +238,7 @@ var SpectralIndicesFunction = function(img) {
 
                       .rename('Emissivity') ;                  
 
-  // [4.4] Albedo Calculation (Sekertekin & Bonafoni, 2020)
+  // [4.4] Albedo Calculation (Bonafoni and Sekertekin, 2020)
 
   var Albedo = Scaled.expression('0.2266 * B2 + 0.1236 * B3 + 0.1573 * B4 + 0.3417 * B8 + 0.1170 * B11 + 0.0338 * B12' , { 'B2': B2 , 'B3': B3 , 'B4': B4 , 'B8' : B8 , 'B11': B11 , 'B12' : B12 }).rename('Albedo').clamp( 0 , 1 ) ;
 

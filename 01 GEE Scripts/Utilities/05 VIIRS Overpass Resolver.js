@@ -24,9 +24,9 @@ var DriftToleranceH = 0.25                                                      
 
 var LonImg          = ee.Image.pixelLonLat().select('longitude')                        ;
 
-// ─────────────────
+// ───────────────
 // [2] Study Years
-// ─────────────────
+// ───────────────
 
 var YearsOf = function( City ) {
 

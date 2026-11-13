@@ -6,7 +6,7 @@ var Config     = require('users/alirezaali/UC4D:01 Configurations')             
 
 var FeatureLib = require('users/alirezaali/UC4D:04 Multi-Source Feature Library') ;
 
-// [1.1] Scales & Distances (m)
+// [1.1] Scales & Distances (m) 
 
 var ScaleNativeFINP  = 10     ;
 
@@ -16,7 +16,7 @@ var ScaleCORP        = 150    ;
 
 var ScaleNativeCORP  = 926.6  ;
 
-var ScaleWorldPop    = 100    ;
+var ScaleWorldPop    = 92.8   ;
 
 var ScaleNTL         = 463.83 ;
 
@@ -1050,9 +1050,9 @@ if (RUN.PopulationMass) {
 
     var B         = Bundles[City]     ;
 
-    var SUHIFC    = B.SUHI            ;
+    var HoldoutFC = B.Holdout         ;
 
-    var Geom      = SUHIFC.geometry() ;
+    var Geom      = HoldoutFC.geometry() ;
 
     UniqueYears(B.Seasons).forEach(function(Year) {
 
@@ -1068,13 +1068,13 @@ var PDCol = B.Countries
  
   .map(function(Country) { var AssetPath = WorldPopBase + '/' + Country + '/' + PDFolder + '/' + Year ;
    
-    return ee.ImageCollection( AssetPath ).filterBounds( SUHIFC ) ;
+    return ee.ImageCollection( AssetPath ).filterBounds( HoldoutFC ) ;
   
   })
 
      .reduce(function(Acc, IC) { return Acc.merge(IC) ; }, ee.ImageCollection([])) ;
  
-      var Src         = PDCol.filterBounds(SUHIFC).mosaic().clip(SUHIFC).rename('PD')                                                      ;
+      var Src         = PDCol.filterBounds(HoldoutFC).mosaic().clip(HoldoutFC).rename('PD') ;
  
       var SrcCountSum = ee.Number( ReduceStats( Src , ee.Reducer.sum() , Geom , ScaleWorldPop ).get('PD') )                                ;
 
@@ -1456,15 +1456,15 @@ if (RUN.GapFilling3D) {
 
   var BuildCityGapFillTable = function(CityName) {
 
-    var Domain = ee.FeatureCollection(DomainBasePath + '/Complete-Domain/' + CityName ).geometry() ;
+    var Domain = ee.FeatureCollection(DomainBasePath + '/Complete-Domain/' + CityName ).geometry()    ;
 
-    var CRS    = Config.CityCRS[CityName].getInfo()                                                ;
+    var CRS    = Config.CityCRS[CityName].getInfo()                                                   ;
 
-    var Coords = ee.List(Domain.bounds(1).coordinates().get(0)).getInfo()                          ;
+    var Coords = ee.List(Domain.bounds(1).coordinates().get(0)).getInfo()                             ;
 
-    var Lons   = Coords.map(function(P) { return P[0] ; })                                         ;
+    var Lons   = Coords.map(function(P) { return P[0] ; })                                            ;
 
-    var Lats   = Coords.map(function(P) { return P[1] ; })                                         ;
+    var Lats   = Coords.map(function(P) { return P[1] ; })                                            ;
 
     var Tiles  = GetOverlappingTileNames(Math.min.apply( null , Lons ), Math.max.apply( null , Lons ) ,
 

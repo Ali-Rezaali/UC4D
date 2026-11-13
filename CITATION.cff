@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+title: 'UC4D: Urban Climate 4D Data Cube Framework'
+message: >-
+  If you use UC4D, please cite both the dataset and the code
+  as shown below along with the paper.
+type: software
+authors:
+  - family-names: Rezaali
+    given-names: Ali
+    email: AliRezaaliGeo@gmail.com
+    affiliation: K. N. Toosi University of Technology
+    orcid: 'https://orcid.org/0009-0008-9387-5661'
+  - family-names: Pilehforooshha
+    given-names: Parastoo
+    email: pilehforoosh@kntu.ac.ir
+    affiliation: K. N. Toosi University of Technology
+    orcid: 'https://orcid.org/0000-0001-8615-0330'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22865045
+    description: Code DOI (Zenodo)
+repository-code: 'https://github.com/Ali-Rezaali/UC4D'
+abstract: >-
+  A multi-scale (10 m and ~926.6 m), multi-source
+  spatiotemporal data cube framework for urban environmental
+  studies, demonstrated for Tehran (Iran) and Singapore. The
+  framework integrates Sentinel-1 SAR, Sentinel-2 optical,
+  FABDEM topography, 3D urban morphology, VIIRS nighttime
+  lights, WorldPop population density, and bias-corrected,
+  downscaled ERA5/ERA5-Land atmospheric fields.
+keywords:
+  - Urban Climate
+  - Remote Sensing
+  - Google Earth Engine
+  - Spatiotemporal Data Cube
+  - Sentinel-1
+  - Sentinel-2
+  - Statistical Downscaling
+  - ERA5-Land
+  - Random Forest
+  - VIIRS
+  - GeoAI
+  - Environmental Modeling
+  - Local Climate Zone
+  - Urban 3D Morphology
+  - Earth Observation
+license: MIT
+version: 1.0.0
+date-released: '2026-11-07'
